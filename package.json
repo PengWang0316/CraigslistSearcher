@@ -1,0 +1,36 @@
+{
+  "name": "craigslist-searcher",
+  "version": "0.0.1",
+  "description": "The library helps users to search and parse the CraigsList.",
+  "main": "./distribution/index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "babel src --out-dir distribution",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
+  },
+  "keywords": [
+    "CraigsList",
+    "search",
+    "parse"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PengWang0316/CraigslistSearcher.git"
+  },
+  "author": "Kevin Wang <rocwang0316@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^23.0.0-alpha.0",
+    "babel-preset-env": "^1.6.1",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.19.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.2"
+  }
+}
