@@ -17,4 +17,4 @@ The library helps users to search and parse the CraigsList.
 
 # License
 
-CraigsList-searcher is licensed under MIT License - see the [License file](https://github.com/PengWang0316/date-lib/blob/master/LICENSE).
+CraigsList-searcher is licensed under MIT License - see the [License file](https://github.com/PengWang0316/CraigslistSearcher/blob/master/LICENSE).
