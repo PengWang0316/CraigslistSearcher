@@ -32,6 +32,6 @@ const search = ({
 
 // export const detail = url => {};
 
-module.exports({
+module.exports = {
   search
-});
+};
