@@ -20,7 +20,7 @@ import { search } from 'craigslist-searcher';
 
 //search function will return a promise with a result array
 search({
-  city: 'seattle' //City's name. Required
+  city: 'seattle', //City's name. Required
   query: 'computer', //Keword for the query. Optional
   category: 'sss', //Category's keyword (Please see below). Optional
   offset: 0 //The number of skipping itmes. Optional
