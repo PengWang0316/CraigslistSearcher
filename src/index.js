@@ -3,7 +3,7 @@ import axios from 'axios';
 const regexFindResult = /<p class="result-info">.+?datetime="(.+?)".+?href="(.+?)".+?>(.+?)<\/a>.+?price">(.+?)<.+?hood">\s*?\((.+?)\)<.+?<\/p>/g;
 const baseSearchUrl = '.craigslist.org/search/';
 
-export const search = ({
+const search = ({
   city, query, category, offset = 0, sort = 'rel'
 } = {}) => new Promise((resolve, reject) => {
   if (!city) reject(new Error('city is a required paramter.'));
@@ -31,3 +31,7 @@ export const search = ({
 });
 
 // export const detail = url => {};
+
+module.exports({
+  search
+});
