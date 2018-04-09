@@ -103,7 +103,7 @@ describe('Test index.js', () => {
 </li></ul>`;
     axiosMock.onGet('https://seattle.craigslist.org/search/book').reply(200, mockReturnHtml);
     search({
-      city: 'seattle', categry: 'book', query: 'keyword', offest: 100
+      city: 'seattle', category: 'book', query: 'keyword', offest: 100
     }).then(data => expect(data).toEqual([
       {
         datetime: '2018-04-07 16:58',

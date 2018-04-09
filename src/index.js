@@ -4,10 +4,10 @@ const regexFindResult = /<p class="result-info">.+?datetime="(.+?)".+?href="(.+?
 const baseSearchUrl = '.craigslist.org/search/';
 
 export const search = ({
-  city, query, categry, offset = 0, sort = 'rel'
+  city, query, category, offset = 0, sort = 'rel'
 } = {}) => new Promise((resolve, reject) => {
   if (!city) reject(new Error('city is a required paramter.'));
-  axios.get(`https://${city}${baseSearchUrl}${categry || ''}`, {
+  axios.get(`https://${city}${baseSearchUrl}${category || ''}`, {
     params: {
       query,
       s: offset,
