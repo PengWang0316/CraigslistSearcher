@@ -9,7 +9,7 @@ const search = ({
   if (!city) reject(new Error('city is a required paramter.'));
   axios.get(`https://${city}${baseSearchUrl}${category || ''}`, {
     params: {
-      query: query ? query.replace(/\w/g, '+') : query,
+      query: query ? query.replace(/\s/g, '+') : query,
       s: offset,
       sort
     }
