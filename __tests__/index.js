@@ -101,7 +101,7 @@ describe('Test index.js', () => {
         </span>
     </p>
 </li></ul>`;
-    axiosMock.onGet('https://seattle.craigslist.org/search/book', { params: { query: 'key+word', s: 100, sort: 'rel' } }).reply(200, mockReturnHtml);
+    axiosMock.onGet('https://seattle.craigslist.org/search/book').reply(200, mockReturnHtml);
     search({
       city: 'seattle', category: 'book', query: 'key word', offest: 100
     }).then(data => expect(data).toEqual([
