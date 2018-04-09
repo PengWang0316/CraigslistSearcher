@@ -12,11 +12,6 @@ npm install craigslist-searcher --save
 
 # Usage
 
-**When you use ES5**
-```
-const
-```
-
 **When you use ES6**
 
 Searching items from a giving city and category with a query keyword.
@@ -31,7 +26,7 @@ search({
   offset: 0 //The number of skipping itmes. Optional
   }).then(resultArray => {
     //resultArray will be an array that contains result data.
-    //It will be like [{
+    /*It will be like [{
                         datetime: '',
                         url: '',
                         title: '',
@@ -39,7 +34,15 @@ search({
                         region: ''
                       },
                       ...]
+    */
   });
+```
+
+**When you use ES5**
+```
+var { search } = require('craigslist-searcher');
+
+// Same with the example above....
 ```
 
 **Categories' keyword list**
