@@ -29,6 +29,7 @@ search({
     /*It will be like [{
                         datetime: '',
                         url: '',
+                        dataId: '',
                         title: '',
                         price: '',
                         region: ''
