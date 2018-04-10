@@ -1,6 +1,6 @@
 {
   "name": "craigslist-searcher",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The library helps users to search and parse the CraigsList.",
   "main": "./distribution/index.js",
   "scripts": {

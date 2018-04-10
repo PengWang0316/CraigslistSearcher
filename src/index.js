@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const regexFindResult = /<p class="result-info">.+?datetime="(.+?)".+?href="(.+?)".+?>(.+?)<\/a>.+?price">(.+?)<.+?hood">\s*?\((.+?)\)<.+?<\/p>/g;
+const regexFindResult = /<p class="result-info">.+?datetime="(.+?)".+?href="(.+?)" data-id="(.+?)".+?>(.+?)<\/a>.+?price">(.+?)<.+?hood">\s*?\((.+?)\)<.+?<\/p>/g;
 const baseSearchUrl = '.craigslist.org/search/';
 
 const search = ({
@@ -21,9 +21,10 @@ const search = ({
       dataResult.push({
         datetime: matchArray[1],
         url: matchArray[2],
-        title: matchArray[3],
-        price: matchArray[4],
-        region: matchArray[5]
+        dataId: matchArray[3],
+        title: matchArray[4],
+        price: matchArray[5],
+        region: matchArray[6]
       });
     }
     resolve(dataResult);

@@ -110,14 +110,16 @@ describe('Test index.js', () => {
         url: 'https://seattle.craigslist.org/see/sys/d/surface-book/6554957520.html',
         title: 'Surface Book',
         price: '$750',
-        region: 'Capitol Hill'
+        region: 'Capitol Hill',
+        dataId: '6554957520'
       },
       {
         datetime: '2018-04-06 23:42',
         url: 'https://seattle.craigslist.org/see/sop/d/microsoft-2017-stylus-pen-for/6551720487.html',
         title: 'microsoft 2017 stylus pen for touch screen surface pro 2017/5/4/3/book',
         price: '$80',
-        region: 'Seattle'
+        region: 'Seattle',
+        dataId: '6551720487'
       }
     ]));
   });
