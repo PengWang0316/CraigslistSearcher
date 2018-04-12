@@ -2,6 +2,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import { search } from '../src/index';
+// import RealData from '../RealData';
 
 const axiosMock = new MockAdapter(axios);
 
@@ -123,4 +124,40 @@ describe('Test index.js', () => {
       }
     ]));
   });
+
+  // test.only('Real data test', () => {
+  //   const formatedData = RealData.replace(/\n/g, '');
+  //   const resultPTagRegex = /<p class="result-info">(.*?)<\/p>/g;
+  //   const pTagArray = [];
+  //   let matchArray;
+  //   while (matchArray = resultPTagRegex.exec(formatedData)) pTagArray.push(matchArray[1]);
+  //
+  //   const regexFindResult = /<time class="result-date" datetime="(.+?)".+?href="(.+?)" data-id="(.+?)".+?>(.+?)<\/a>.+?price">(.+?)<.+?hood">\s*?\((.+?)\)<\/span>/;
+  //
+  //   const dataResult = [];
+  //
+  //   pTagArray.forEach(pTag => {
+  //     matchArray = regexFindResult.exec(pTag);
+  //     if (matchArray) dataResult.push({
+  //       datetime: matchArray[1],
+  //       url: matchArray[2],
+  //       dataId: matchArray[3],
+  //       title: matchArray[4],
+  //       price: matchArray[5],
+  //       region: matchArray[6]
+  //     });
+  //   });
+  //
+  //   // while (matchArray = regexFindResult.exec(formatedData)) {
+  //   //   dataResult.push({
+  //   //     datetime: matchArray[1],
+  //   //     url: matchArray[2],
+  //   //     dataId: matchArray[3],
+  //   //     title: matchArray[4],
+  //   //     price: matchArray[5],
+  //   //     region: matchArray[6]
+  //   //   });
+  //   // }
+  //   console.log(dataResult.length);
+  // });
 });

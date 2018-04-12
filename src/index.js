@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const regexFindResult = /<p class="result-info">.+?datetime="(.+?)".+?href="(.+?)" data-id="(.+?)".+?>(.+?)<\/a>.+?price">(.+?)<.+?hood">\s*?\((.+?)\)<.+?<\/p>/g;
+const resultPTagRegex = /<p class="result-info">(.*?)<\/p>/g;
+const regexFindResult = /<time class="result-date" datetime="(.+?)".+?href="(.+?)" data-id="(.+?)".+?>(.+?)<\/a>.+?price">(.+?)<.+?hood">\s*?\((.+?)\)<\/span>/;
 const baseSearchUrl = '.craigslist.org/search/';
 
 const search = ({
@@ -9,16 +10,20 @@ const search = ({
   if (!city) reject(new Error('city is a required paramter.'));
   axios.get(`https://${city}${baseSearchUrl}${category || ''}`, {
     params: {
-      query: query ? query.replace(/\s/g, '+') : query,
+      query,
       s: offset,
       sort
     }
   }).then(({ data }) => {
     const formatedData = data.replace(/\n/g, '');
-    const dataResult = [];
+    const pTagArray = [];
     let matchArray;
-    while (matchArray = regexFindResult.exec(formatedData)) {
-      dataResult.push({
+    while (matchArray = resultPTagRegex.exec(formatedData)) pTagArray.push(matchArray[1]);
+
+    const dataResult = [];
+    pTagArray.forEach(pTag => {
+      matchArray = regexFindResult.exec(pTag);
+      if (matchArray) dataResult.push({
         datetime: matchArray[1],
         url: matchArray[2],
         dataId: matchArray[3],
@@ -26,7 +31,7 @@ const search = ({
         price: matchArray[5],
         region: matchArray[6]
       });
-    }
+    });
     resolve(dataResult);
   }).catch(error => console.warn(error));
 });
