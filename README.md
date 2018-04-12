@@ -15,13 +15,15 @@ npm install craigslist-searcher --save
 **When you use ES6**
 
 Searching items from a giving city and category with a query keyword.
+**If an item does not set a price, it will not be showed in the search result.**
+
 ```
 import { search } from 'craigslist-searcher';
 
 //search function will return a promise with a result array
 search({
   city: 'seattle', //City's name. Required
-  query: 'computer', //Keword for the query. Optional
+  query: 'computer', //Keword for the query. Using a white space to separate multiple key words. (e.g. 'computer book')  Optional
   category: 'sss', //Category's keyword (Please see below). Optional
   offset: 0 //The number of skipping itmes. Optional
   }).then(resultArray => {
