@@ -23,6 +23,7 @@ const search = ({
     const dataResult = [];
     pTagArray.forEach(pTag => {
       matchArray = regexFindResult.exec(pTag);
+      /* istanbul ignore next */
       if (matchArray) dataResult.push({
         datetime: matchArray[1],
         url: matchArray[2],
