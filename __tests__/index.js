@@ -1,107 +1,43 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import { search } from '../src/index';
-// import RealData from '../RealData';
+import { search, detail } from '../src/index';
+import { detailPageStr, mockReturnHtml } from '../RealDataForTest';
 
 const axiosMock = new MockAdapter(axios);
 
-describe('Test index.js', () => {
+describe('Test search without any parameter', () => {
   test('Test search function without city paramter', () => {
-    axiosMock.onGet('https://undefined.craigslist.org/search/').reply(200, '');
-    search().catch(e => expect(e).toEqual(new Error('city is a required paramter.')));
+    axiosMock.onGet('https://www.craigslist.org/search/').reply(200, mockReturnHtml);
+    search().then(data => expect(data).toEqual([
+      {
+        datetime: '2018-04-07 16:58',
+        url: 'https://seattle.craigslist.org/see/sys/d/surface-book/6554957520.html',
+        title: 'Surface Book',
+        price: '$750',
+        region: 'Capitol Hill',
+        dataId: '6554957520'
+      },
+      {
+        datetime: '2018-04-06 23:42',
+        url: 'https://seattle.craigslist.org/see/sop/d/microsoft-2017-stylus-pen-for/6551720487.html',
+        title: 'microsoft 2017 stylus pen for touch screen surface pro 2017/5/4/3/book',
+        price: '$80',
+        region: 'Seattle',
+        dataId: '6551720487'
+      }
+    ]));
   });
 
   test('Test search function with axios error', () => {
-    const mockWarnFn = jest.fn();
-    window.console.warn = mockWarnFn;
-    search({ city: 'city' }).then(() => expect(mockWarnFn).toHaveBeenCalledTimes(1));
+    axiosMock.onGet('https://city.craigslist.org/search/').networkError();
+    search({ city: 'city' }).catch(e => {
+      expect(e).not.toBeNull();
+      expect(e).not.toBeUndefined();
+    });
   });
 
   test('Test search function', () => {
-    const mockReturnHtml = `<ul class="rows">
-                             <li class="result-row" data-pid="6554957520">
-
-        <a href="https://seattle.craigslist.org/see/sys/d/surface-book/6554957520.html" class="result-image gallery" data-ids="1:00I0I_6Kur6D08fu9,1:00e0e_fXsXSYyrkaJ,1:00p0p_2viHbPd9l8v">
-                <span class="result-price">$750</span>
-        </a>
-
-    <p class="result-info">
-        <span class="icon icon-star" role="button">
-            <span class="screen-reader-text">favorite this post</span>
-        </span>
-
-            <time class="result-date" datetime="2018-04-07 16:58" title="Sat 07 Apr 04:58:12 PM">Apr  7</time>
-
-
-        <a href="https://seattle.craigslist.org/see/sys/d/surface-book/6554957520.html" data-id="6554957520" class="result-title hdrlnk">Surface Book</a>
-
-
-        <span class="result-meta">
-                <span class="result-price">$750</span>
-
-
-                <span class="result-hood"> (Capitol Hill)</span>
-
-                <span class="result-tags">
-                    pic
-                    <span class="maptag" data-pid="6554957520">map</span>
-                </span>
-
-                <span class="banish icon icon-trash" role="button">
-                    <span class="screen-reader-text">hide this posting</span>
-                </span>
-
-            <span class="unbanish icon icon-trash red" role="button" aria-hidden="true"></span>
-            <a href="#" class="restore-link">
-                <span class="restore-narrow-text">restore</span>
-                <span class="restore-wide-text">restore this posting</span>
-            </a>
-
-        </span>
-    </p>
-</li>
-         <li class="result-row" data-pid="6551720487" data-repost-of="6461987946">
-
-        <a href="https://seattle.craigslist.org/see/sop/d/microsoft-2017-stylus-pen-for/6551720487.html" class="result-image gallery" data-ids="1:00000_fAtmwI4Kl8a,1:00303_5MQYlEM0Ogc,1:01414_63XV97cU4Pa,1:00m0m_g8EB1gMaUPu">
-                <span class="result-price">$80</span>
-        </a>
-
-    <p class="result-info">
-        <span class="icon icon-star" role="button">
-            <span class="screen-reader-text">favorite this post</span>
-        </span>
-
-            <time class="result-date" datetime="2018-04-06 23:42" title="Fri 06 Apr 11:42:31 PM">Apr  6</time>
-
-
-        <a href="https://seattle.craigslist.org/see/sop/d/microsoft-2017-stylus-pen-for/6551720487.html" data-id="6551720487" class="result-title hdrlnk">microsoft 2017 stylus pen for touch screen surface pro 2017/5/4/3/book</a>
-
-
-        <span class="result-meta">
-                <span class="result-price">$80</span>
-
-
-                <span class="result-hood"> (Seattle)</span>
-
-                <span class="result-tags">
-                    pic
-                    <span class="maptag" data-pid="6551720487">map</span>
-                </span>
-
-                <span class="banish icon icon-trash" role="button">
-                    <span class="screen-reader-text">hide this posting</span>
-                </span>
-
-            <span class="unbanish icon icon-trash red" role="button" aria-hidden="true"></span>
-            <a href="#" class="restore-link">
-                <span class="restore-narrow-text">restore</span>
-                <span class="restore-wide-text">restore this posting</span>
-            </a>
-
-        </span>
-    </p>
-</li></ul>`;
     axiosMock.onGet('https://seattle.craigslist.org/search/book').reply(200, mockReturnHtml);
     search({
       city: 'seattle', category: 'book', query: 'key word', offest: 100
@@ -125,7 +61,7 @@ describe('Test index.js', () => {
     ]));
   });
 
-  // test.only('Real data test', () => {
+  // test.only('Real list page data test', () => {
   //   const formatedData = RealData.replace(/\n/g, '');
   //   const resultPTagRegex = /<p class="result-info">(.*?)<\/p>/g;
   //   const pTagArray = [];
@@ -160,4 +96,37 @@ describe('Test index.js', () => {
   //   // }
   //   console.log(dataResult.length);
   // });
+
+  test('real detailed page date test', () => {
+    const mockUrl = 'mockUrl';
+    axiosMock.onGet(mockUrl).reply(200, detailPageStr);
+    detail(mockUrl).then(result => expect(result).toEqual({
+      title: 'Microsoft Surface Pro i7 16GB 512GB SSD Iris Plus Graphics 640 12.3" W',
+      price: '$1500',
+      location: 'Everett',
+      images:
+       ['https://images.craigslist.org/00m0m_dsYfNXkKqlp_600x450.jpg',
+         'https://images.craigslist.org/00s0s_7yHNqQMgCzl_600x450.jpg',
+         'https://images.craigslist.org/01616_2ScrqKHwdom_600x450.jpg',
+         'https://images.craigslist.org/00j0j_aWlb0vAKjla_600x450.jpg',
+         'https://images.craigslist.org/00K0K_2iZNQw8gfWS_600x450.jpg'],
+      latitude: '47.988400',
+      longitude: '-122.200600',
+      accuracy: '22',
+      googleMap: 'https://maps.google.com/maps/preview/@47.988400,-122.200600,16z',
+      description: 'GOOD CONDITION Microsoft Surface Pro i7 16GB 512GB SSD Iris Plus Graphics 640 12.3" Windows 10 Pro NO PEN - FKJ-00001. Come with box and charger, NO PEN. Asking $1500. Retail $2119.\n    ',
+      postedDate: '2018-03-25 10:51am'
+    }));
+  });
+
+  test('detail without url', () => detail().catch(e => expect(e).toEqual(new Error('url is a required parameter.'))));
+
+  test('detail with axios error', () => {
+    const mockUrl = 'url';
+    axiosMock.onGet(mockUrl).networkError();
+    detail(mockUrl).catch(e => {
+      expect(e).not.toBeNull();
+      expect(e).not.toBeUndefined();
+    })
+  });
 });
