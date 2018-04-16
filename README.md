@@ -17,16 +17,18 @@ npm install craigslist-searcher --save
 Searching items from a giving city and category with a query keyword.
 **If an item does not set a price, it will not be showed in the search result.**
 
-```
+search function:
+```javascript
 import { search } from 'craigslist-searcher';
 
 //search function will return a promise with a result array
 search({
-  city: 'seattle', //City's name. Required
-  query: 'computer', //Keword for the query. Using a white space to separate multiple key words. (e.g. 'computer book')  Optional
-  category: 'sss', //Category's keyword (Please see below). Optional
-  offset: 0 //The number of skipping itmes. Optional
+  city: 'seattle', //City's name. Optional. If no city is given, the function will search worldwidely.
+  query: 'computer', //Keword for the query. Using a white space to separate multiple key words. (e.g. 'computer book')  Optional.
+  category: 'sss', //Category's keyword (Please see below). Optional.
+  offset: 0 //The number of skipping itmes. Optional.
   }).then(resultArray => {
+    console.log(resultArray);
     //resultArray will be an array that contains result data.
     /*It will be like [{
                         datetime: '',
@@ -41,9 +43,32 @@ search({
   });
 ```
 
-**When you use ES5**
+detail function: get detailed information from an items
+```javascript
+import { detail } from 'craigslist-searcher';
+// detail function takes a url that returns from search function as the parameter. Required.
+detail('https://seattle.craigslist.org/oly/pts/d/car-truck-emblems/6562329918.html').then(result => {
+  console.log(result);
+  // The result is an object that contains item's detailed information.
+  // The format will look like below:
+  // {
+  //   title: 'Item's title text,
+  //   price: 'Item's price',
+  //   location: 'Item's location',
+  //   images: ['The first image url', 'The second image url', ...],
+  //   latitude: 'Latitude',
+  //   longitude: 'Longitude',
+  //   accuracy: 'Location accuracy',
+  //   googleMap: 'Google map's url',
+  //   description: 'Item's description',
+  //   postedDate: 'Posted date and time'
+  // }
+});
 ```
-var { search } = require('craigslist-searcher');
+
+**When you use ES5**
+```javascript
+var { search, detail } = require('craigslist-searcher');
 
 // Same with the example above....
 ```
