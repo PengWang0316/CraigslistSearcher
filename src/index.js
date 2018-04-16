@@ -36,7 +36,7 @@ const search = ({
       });
     });
     resolve(dataResult);
-  }).catch(error => console.warn(error));
+  }).catch(error => reject(error));
 });
 
 const detail = url => new Promise((resolve, reject) => {
