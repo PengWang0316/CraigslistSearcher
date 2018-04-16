@@ -4,6 +4,8 @@ The library helps users to search and parse the CraigsList.
 
 [![Build Status](https://travis-ci.org/PengWang0316/CraigslistSearcher.svg?branch=master)](https://travis-ci.org/PengWang0316/CraigslistSearcher) [![Coverage Status](https://coveralls.io/repos/github/PengWang0316/CraigslistSearcher/badge.svg?branch=master)](https://coveralls.io/github/PengWang0316/CraigslistSearcher?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/11801ff3af51468a88733665f3e2eac8)](https://www.codacy.com/app/PengWang0316/CraigslistSearcher?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PengWang0316/CraigslistSearcher&amp;utm_campaign=Badge_Grade)
 
+**Version 1.0.1 does not have any breaking change. You can safely update it to the new version.**
+
 # Installing
 
 ```
