@@ -2,7 +2,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import { search, detail } from '../src/index';
-import { detailPageStr, mockReturnHtml } from '../RealDataForTest';
+import { detailPageStr, mockReturnHtml } from '../TestData/RealDataForTest';
 
 const axiosMock = new MockAdapter(axios);
 
