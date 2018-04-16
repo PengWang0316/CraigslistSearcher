@@ -7,10 +7,9 @@ const regexDetail = /<span id="titletextonly">(.+?)<\/span>.*?<span class="price
 const regexDetailImages = /href="(.+?)"/g;
 
 const search = ({
-  city, query, category, offset = 0, sort = 'rel'
+  city = 'www', query, category, offset = 0, sort = 'rel'
 } = {}) => new Promise((resolve, reject) => {
-  if (!city) reject(new Error('city is a required paramter.'));
-  axios.get(`https://${city}${baseSearchUrl}${category || ''}`, {
+  axios.get(`https:\/\/${city}${baseSearchUrl}${category || ''}`, {
     params: {
       query,
       s: offset,
