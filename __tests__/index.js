@@ -115,7 +115,8 @@ describe('Test search without any parameter', () => {
       accuracy: '22',
       googleMap: 'https://maps.google.com/maps/preview/@47.988400,-122.200600,16z',
       description: 'GOOD CONDITION Microsoft Surface Pro i7 16GB 512GB SSD Iris Plus Graphics 640 12.3" Windows 10 Pro NO PEN - FKJ-00001. Come with box and charger, NO PEN. Asking $1500. Retail $2119.\n    ',
-      postedDate: '2018-03-25 10:51am'
+      postedDate: '2018-03-25 10:51am',
+      dataId: '6542561613'
     }));
   });
 

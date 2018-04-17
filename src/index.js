@@ -3,7 +3,7 @@ import axios from 'axios';
 const resultPTagRegex = /<p class="result-info">(.*?)<\/p>/g;
 const regexFindResult = /<time class="result-date" datetime="(.+?)".+?href="(.+?)" data-id="(.+?)".+?>(.+?)<\/a>.+?price">(.+?)<.+?hood">\s*?\((.+?)\)<\/span>/;
 const baseSearchUrl = '.craigslist.org/search/';
-const regexDetail = /<span id="titletextonly">(.+?)<\/span>.*?<span class="price">(.+?)<\/span><small>.*?\((.+?)\).+?<div id="thumbs">(.+?)<\/div>.+?data-latitude="(.+?)" data-longitude="(.+?)" data-accuracy="(.+?)".+?<p class="mapaddress">.*?<small>.*?\(<a target="_blank" href="(.+?)".+?<section id="postingbody">.+?<\/div>.*?<\/div>(.*?)<\/section>.+?posted: <time.+?>(.+?)<\/time>/;
+const regexDetail = /<span id="titletextonly">(.+?)<\/span>.*?<span class="price">(.+?)<\/span><small>.*?\((.+?)\).+?<div id="thumbs">(.+?)<\/div>.+?data-latitude="(.+?)" data-longitude="(.+?)" data-accuracy="(.+?)".+?<p class="mapaddress">.*?<small>.*?\(<a target="_blank" href="(.+?)".+?<section id="postingbody">.+?<\/div>.*?<\/div>(.*?)<\/section>.+?<p class="postinginfo">post id:\s?(.+?)<\/p>.+?posted: <time.+?>(.+?)<\/time>/;
 const regexDetailImages = /href="(.+?)"/g;
 
 const search = ({
@@ -58,7 +58,8 @@ const detail = url => new Promise((resolve, reject) => {
       accuracy: matchResult[7],
       googleMap: matchResult[8],
       description: matchResult[9].replace(/<br>/g, '\n'), // Replacing the html tag </br> to \n
-      postedDate: matchResult[10]
+      dataId: matchResult[10],
+      postedDate: matchResult[11]
     });
   }).catch(err => reject(err));
 });
