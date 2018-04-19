@@ -58,10 +58,10 @@ detail('https://seattle.craigslist.org/oly/pts/d/car-truck-emblems/6562329918.ht
   //   price: 'Item's price',
   //   location: 'Item's location',
   //   images: ['The first image url', 'The second image url', ...],
-  //   latitude: 'Latitude',
-  //   longitude: 'Longitude',
-  //   accuracy: 'Location accuracy',
-  //   googleMap: 'Google map's url',
+  //   latitude: 'Latitude', // Will return null if no latitude information
+  //   longitude: 'Longitude', // Will return null if no longitude information
+  //   accuracy: 'Location accuracy', // Will return null if no accuracy information
+  //   googleMap: 'Google map's url', // Will return null if no Google map information
   //   description: 'Item's description',
   //   postedDate: 'Posted date and time',
   //   dataId: 'post id'

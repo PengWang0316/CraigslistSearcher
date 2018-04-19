@@ -2,7 +2,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import { search, detail } from '../src/index';
-import { detailPageStr, mockReturnHtml } from '../TestData/RealDataForTest';
+import { detailPageStr, mockReturnHtml, detailedPageStringWithoutMap } from '../TestData/RealDataForTest';
 
 const axiosMock = new MockAdapter(axios);
 
@@ -120,6 +120,29 @@ describe('Test search without any parameter', () => {
     }));
   });
 
+  test('real detailed page date without map test', () => {
+    const mockUrl = 'mockUrl';
+    axiosMock.onGet(mockUrl).reply(200, detailedPageStringWithoutMap);
+    detail(mockUrl).then(result => expect(result).toEqual({
+      title: 'Microsoft Surface Pro i7 16GB 512GB SSD Iris Plus Graphics 640 12.3" W',
+      price: '$1500',
+      location: 'Everett',
+      images:
+       ['https://images.craigslist.org/00m0m_dsYfNXkKqlp_600x450.jpg',
+         'https://images.craigslist.org/00s0s_7yHNqQMgCzl_600x450.jpg',
+         'https://images.craigslist.org/01616_2ScrqKHwdom_600x450.jpg',
+         'https://images.craigslist.org/00j0j_aWlb0vAKjla_600x450.jpg',
+         'https://images.craigslist.org/00K0K_2iZNQw8gfWS_600x450.jpg'],
+      latitude: null,
+      longitude: null,
+      accuracy: null,
+      googleMap: null,
+      description: 'GOOD CONDITION Microsoft Surface Pro i7 16GB 512GB SSD Iris Plus Graphics 640 12.3" Windows 10 Pro NO PEN - FKJ-00001. Come with box and charger, NO PEN. Asking $1500. Retail $2119.\n    ',
+      postedDate: '2018-03-25 10:51am',
+      dataId: '6542561613'
+    }));
+  });
+
   test('detail without url', () => detail().catch(e => expect(e).toEqual(new Error('url is a required parameter.'))));
 
   test('detail with axios error', () => {
@@ -128,6 +151,6 @@ describe('Test search without any parameter', () => {
     detail(mockUrl).catch(e => {
       expect(e).not.toBeNull();
       expect(e).not.toBeUndefined();
-    })
+    });
   });
 });
