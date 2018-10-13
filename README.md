@@ -28,7 +28,7 @@ search({
   city: 'seattle', //City's name. Optional. If no city is given, the function will search worldwidely.
   query: 'computer', //Keword for the query. Using a white space to separate multiple key words. (e.g. 'computer book')  Optional.
   category: 'sss', //Category's keyword (Please see below). Optional.
-  offset: 0 //The number of skipping itmes. Optional.
+  offset: 0 //The number of skipping items. Optional.
   }).then(resultArray => {
     console.log(resultArray);
     //resultArray will be an array that contains result data.
