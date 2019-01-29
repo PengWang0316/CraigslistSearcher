@@ -1,11 +1,11 @@
 {
   "name": "craigslist-searcher",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The library helps users to search and parse the CraigsList.",
   "main": "./distribution/index.js",
   "scripts": {
     "test": "jest --coverage",
-    "build": "babel src --out-dir distribution",
+    "build": "babel src --out-dir distribution && uglifyjs distribution/index.js -c -m -o distribution/index.js",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "keywords": [
@@ -32,7 +32,8 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "jest": "^22.4.2"
+    "jest": "^22.4.2",
+    "uglify-js": "^3.4.9"
   },
   "dependencies": {
     "axios": "^0.18.0"
