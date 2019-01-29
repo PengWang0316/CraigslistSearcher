@@ -1,1 +1,8 @@
 src
+__tests__
+coverage
+.babelrc
+.coveralls.yml
+.eslintrc
+.travis.yml
+TestData
