@@ -20,20 +20,20 @@
   "author": "Kevin Wang <rocwang0316@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "axios-mock-adapter": "^1.15.0",
+    "axios-mock-adapter": "^1.16.0",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
-    "babel-jest": "^23.0.0-alpha.0",
-    "babel-preset-env": "^1.6.1",
-    "coveralls": "^3.0.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "^24.5.0",
+    "babel-preset-env": "^1.7.0",
+    "coveralls": "^3.0.3",
     "eslint": "^4.19.0",
     "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
-    "jest": "^22.4.2",
-    "uglify-js": "^3.4.9"
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.5.0",
+    "uglify-js": "^3.5.2"
   },
   "dependencies": {
     "axios": "^0.18.0"
